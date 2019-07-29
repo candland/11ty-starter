@@ -1,0 +1,27 @@
+---
+permalink: feed.xml
+sitemapIgnore: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title }}</title>
+  <subtitle>{{ site.description }}</subtitle>
+  <link href="{{ site.url }}/feed.xml" rel="self"/>
+  <link href="{{ site.url }}"/>
+  <updated>{{ site.buildTime | dateDisplay }}</updated>
+  <id>{{ site.url }}</id>
+  <author>
+    <name>{{ site.author }}</name>
+    <email>{{ site.email }}</email>
+  </author>
+  {%- for product in collections.products %}
+  {% set absolutePostUrl %}{{ product.url | absoluteUrl(site.url) }}{% endset %}
+  <entry>
+    <title>{{ product.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ product.data.product.updatedAt }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">{{ product.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

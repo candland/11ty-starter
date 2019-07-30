@@ -12,6 +12,11 @@ A basic starter site with 11ty, ParcelJS, StimulusJS, and TailwindCSS.
 
 ## Development
 
+Get the repo
+
+		git clone -o 11ty-starter git@github.com:candland/11ty-starter.git website
+		cd website
+
 Setup
 
 		yarn install

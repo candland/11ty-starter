@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
     return Object.keys(value)
   })
 
-  eleventyConfig.addNunjucksFilter('dateDisplay', function (date) {
+  eleventyConfig.addNunjucksFilter('isoDate', function (date) {
     return date.toISOString()
   })
 

@@ -8,7 +8,7 @@ sitemapIgnore: true
   <subtitle>{{ site.description }}</subtitle>
   <link href="{{ site.url }}/feed.xml" rel="self"/>
   <link href="{{ site.url }}"/>
-  <updated>{{ site.buildTime | dateDisplay }}</updated>
+  <updated>{{ site.buildTime | isoDate }}</updated>
   <id>{{ site.url }}</id>
   <author>
     <name>{{ site.author }}</name>

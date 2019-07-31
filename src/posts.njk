@@ -1,0 +1,31 @@
+---
+layout: default
+pagination:
+  data: collections.post
+  size: 3
+  alias: posts
+---
+
+<article class="flex flex-auto flex-col justify-center mb-5 p-5">
+  <h1 class="text-center mt-5 text-lg">Posts</h1>
+  <div>
+    {% for post in posts %}
+      <li>
+        <a href="{{post.url | url}}">
+          {{ post.data.title }}
+        </a>
+        | {{ (post.data.tags or []) | join(', ') }}
+        | {{ post.date.toDateString() }}
+      </li>
+    {% endfor %}
+  </div>
+
+	<nav class="mx-auto py-3">
+		{%- if pagination.previousPageHref -%}
+    <a href="{{ pagination.previousPageHref | url }}">Previous</a>
+		{%- endif -%}
+		{%- if pagination.nextPageHref -%}
+    <a href="{{ pagination.nextPageHref | url }}">Next</a>
+		{%- endif -%}
+  </nav>
+</article>

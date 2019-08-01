@@ -6,3 +6,11 @@ layout: default
   <h1 class="text-lg">{{ title }}</h1>
   {{ content | safe }}
 </article>
+
+{% set prev = page | prevPost %}
+{% set next = page | nextPost %}
+
+<nav class="flex flex-row">
+  <a class="mr-5" href="{{ prev.url }}">{{ prev.data.title }}</a>
+  <a class="mr-5" href="{{ next.url }}">{{ next.data.title }}</a>
+</nav>

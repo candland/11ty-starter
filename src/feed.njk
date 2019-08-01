@@ -1,6 +1,6 @@
 ---
 permalink: feed.xml
-sitemapIgnore: true
+eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -14,14 +14,14 @@ sitemapIgnore: true
     <name>{{ site.author }}</name>
     <email>{{ site.email }}</email>
   </author>
-  {%- for product in collections.products %}
-  {% set absolutePostUrl %}{{ product.url | absoluteUrl(site.url) }}{% endset %}
+  {%- for item in collections.post %}
+  {% set absolutePostUrl %}{{ item.url | absoluteUrl(site.url) }}{% endset %}
   <entry>
-    <title>{{ product.title }}</title>
+    <title>{{ item.title }}</title>
     <link href="{{ absolutePostUrl }}"/>
-    <updated>{{ product.data.product.updatedAt }}</updated>
+    <updated>{{ item.data.item.updatedAt }}</updated>
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ product.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+    <content type="html">{{ item.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
   {%- endfor %}
 </feed>

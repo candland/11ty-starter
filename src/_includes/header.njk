@@ -10,34 +10,24 @@
     </div>
     <div class="pt-5 hidden lg:flex collapse navbar-collapse" id="navbarHeader">
       <ul class="flex flex-row justify-end ml-auto">
-        {#<li class="ml-3">
-          <a class="" href="/collections/">
-            <i class="fa fa-cubes"></i>
-            collections
-          </a>
-        </li>#}
-        <li class="ml-3">
-          <a class="" href="/about/">
-            <i class="fa fa-user-secret"></i>
-            about
-          </a>
+        {%- for nav in collections.nav | ordered | reverse -%}
+        <li class="ml-3 {% if nav.url == page.url %} text-bold{% endif %}">
+          <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
         </li>
+        {%- endfor -%}
         <li class="ml-3">
           <a class="" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
             <i class="fa fa-twitter"></i>
-            <span class="d-lg-none">twitter</span>
           </a>
         </li>
         <li class="ml-3">
           <a class="" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
             <i class="fa fa-facebook"></i>
-            <span class="d-lg-none">facebook</span>
           </a>
         </li>
         <li class="ml-3">
           <a class="" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
             <i class="fa fa-instagram"></i>
-            <span class="d-lg-none">instagram</span>
           </a>
         </li>
       </ul>

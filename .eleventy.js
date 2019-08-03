@@ -12,6 +12,10 @@ module.exports = function (eleventyConfig) {
     return date.toISOString()
   })
 
+  eleventyConfig.addFilter('displayDate', function (date) {
+    return date.toDateString()
+  })
+
   eleventyConfig.addFilter('prepend', function (value, pre) {
     return `${pre}${value}`
   })

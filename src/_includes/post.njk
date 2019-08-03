@@ -2,9 +2,14 @@
 layout: default
 ---
 
-<article class="flex flex-auto flex-col justify-center mb-5 p-5">
-  <h1 class="text-lg">{{ title }}</h1>
-  {{ content | safe }}
+<article class="">
+  <h1 class="pb-0">{{ title }}</h1>
+  <div class="text-gray-700 pb-6">
+    {{ author }} | {{ page.date | displayDate }}
+  </div>
+  <div class="content">
+    {{ content | safe }}
+  </div>
 </article>
 
 {% set prev = page | prevPost %}

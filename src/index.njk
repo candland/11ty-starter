@@ -6,12 +6,13 @@ navtitle: Home
 order: 0
 ---
 
-<article class="flex flex-auto flex-col justify-center mb-5 p-5">
-  <h1 class="text-center mt-5 text-lg">{{ site.description }}</h1>
+<article class="">
+  <h1 class="text-center">{{ site.description }}</h1>
   <p class="text-lg text-center">
 		A basic starter site with 11ty, ParcelJS, StimulusJS, and TailwindCSS.
   </p>
   <div>
+    <ul>
     {% for post in (collections.post | head(-3) ) %}
       <li>
         <a href="{{post.url}}">
@@ -21,6 +22,7 @@ order: 0
         | {{ post.date.toDateString() }}
       </li>
     {% endfor %}
+    </ul>
 		<a href="{{ "/posts/" | url }}">All</a>
   </div>
 

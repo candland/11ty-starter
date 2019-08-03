@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 pagination:
   data: collections.post
   size: 3
@@ -9,9 +9,10 @@ navtitle: Posts
 order: 2
 ---
 
-<article class="flex flex-auto flex-col justify-center mb-5 p-5">
-  <h1 class="text-center mt-5 text-lg">Posts</h1>
+<article class="">
+  <h1 class="">Posts</h1>
   <div>
+    <ul>
     {% for post in posts %}
       <li>
         <a href="{{post.url | url}}">
@@ -21,6 +22,7 @@ order: 2
         | {{ post.date.toDateString() }}
       </li>
     {% endfor %}
+    </ul>
   </div>
 
 	<nav class="mx-auto py-3">

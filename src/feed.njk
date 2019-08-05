@@ -17,9 +17,9 @@ eleventyExcludeFromCollections: true
   {%- for item in collections.post %}
   {% set absolutePostUrl %}{{ item.url | absoluteUrl(site.url) }}{% endset %}
   <entry>
-    <title>{{ item.title }}</title>
+    <title>{{ item.data.title }}</title>
     <link href="{{ absolutePostUrl }}"/>
-    <updated>{{ item.data.item.updatedAt }}</updated>
+    <updated>{{ (item.data.updatedAt or item.date) | isoDate }}</updated>
     <id>{{ absolutePostUrl }}</id>
     <content type="html">{{ item.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>

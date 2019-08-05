@@ -36,3 +36,4 @@ Build
 ## References
 
 * <https://github.com/hacknug/tailwindcss-parcel-boilerplate>
+* <https://github.com/11ty/eleventy-base-blog>

@@ -1,31 +1,33 @@
 <div class="container mx-auto">
-  <nav class="flex flex-row justify-between mb-4">
-    <div class="">
-      <button aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation" class="lg:hidden navbar-toggler" data-target="#navbarHeader" data-toggle="collapse" type="button">
-        <i class="fa fa-fs fa-bars"></i>
-      </button>
+  <nav class="flex flex-wrap justify-between mb-4">
+    <div class="flex-no-shrink">
       <a href="/">
         <img class="img-fluid" src="/assets/images/sg-logo.svg" alt="Stubborn Goods Logo" style="width: 100% \9;"/>
       </a>
     </div>
-    <div class="pt-5 hidden lg:flex collapse navbar-collapse" id="navbarHeader">
-      <ul class="flex flex-row justify-end ml-auto">
+    <div class="p-4 block lg:hidden" data-menu="navbarHeader">
+      <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+        <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </button>
+    </div>
+    <div class="hidden w-full lg:w-auto block pt-5 lg:flex collapse navbar-collapse" id="navbarHeader">
+      <ul class="flex flex-col lg:flex-row justify-start lg:justify-end ml-auto border-t border-solid lg:border-none">
         {%- for nav in collections.nav | ordered | reverse -%}
-        <li class="ml-3 {% if nav.url == page.url %} text-bold{% endif %}">
+        <li class="p-2 border-b border-solid lg:border-none {% if nav.url == page.url %} text-bold{% endif %}">
           <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
         </li>
         {%- endfor -%}
-        <li class="ml-3">
+        <li class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
             <i class="fa fa-twitter"></i>
           </a>
         </li>
-        <li class="ml-3">
+        <li class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
             <i class="fa fa-facebook"></i>
           </a>
         </li>
-        <li class="ml-3">
+        <li class="p-2 border-b border-solid lg:border-none pr-0">
           <a class="" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
             <i class="fa fa-instagram"></i>
           </a>
@@ -34,3 +36,26 @@
     </div>
   </nav>
 </div>
+<script>
+  'use strict';
+
+  (function() {
+    function setup_menu(script) {
+      var els = document.querySelectorAll("div[data-menu]");
+      if (els.length > 0) {
+        var el = els[0];
+        el.addEventListener('click', function(e) {
+          var id = e.currentTarget.getAttribute('data-menu');
+          var el = document.querySelectorAll("#" + id)[0];
+          el.classList.toggle("hidden");
+        });
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function() { setup_menu() });
+    } else {
+      setup_menu();
+    }
+  })()
+</script>

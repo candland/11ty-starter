@@ -18,8 +18,10 @@ order: 2
         <a href="{{post.url | url}}">
           {{ post.data.title }}
         </a>
-        | {{ (post.data.tags or []) | join(', ') }}
+        | {{ (post.data.tags or [] | exclude('post')) | join(', ') }}
         | {{ post.date.toDateString() }}
+
+        <p>{{ [post.data.page.excerpt, (post.templateContent | striptags | truncate(240))] | firstValue }}</p>
       </li>
     {% endfor %}
     </ul>

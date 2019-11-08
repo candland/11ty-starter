@@ -4,6 +4,10 @@ module.exports = function (eleventyConfig) {
   // Add a filter using the Config API
   /* eleventyConfig.addFilter( "myFilter", function() {}); */
 
+  function isPresent (val) {
+    return val !== null && val !== '' && val !== 'undefined' && val !== undefined
+  }
+
   eleventyConfig.addFilter('keys', function (value) {
     return Object.keys(value)
   })
@@ -24,6 +28,21 @@ module.exports = function (eleventyConfig) {
     return values.find((val) => {
       return val !== null && val !== '' && val !== undefined
     })
+  })
+
+  eleventyConfig.addFilter('notBlank', function (values) {
+    return values.filter(isPresent)
+  })
+
+  eleventyConfig.addFilter('isArray', function (arr, idx) {
+    if (arr instanceof Array) {
+      return arr[idx]
+    }
+    return arr
+  })
+
+  eleventyConfig.addFilter('reject', function (arr, ...args) {
+    return arr.filter((v) => !args.includes(v))
   })
 
   eleventyConfig.addFilter('ordered', function (coll) {
@@ -66,6 +85,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
 
+  eleventyConfig.setFrontMatterParsingOptions({
+    excerpt: true,
+    // Optional, default is "---"
+    excerpt_separator: '<!-- more -->'
+  })
+
   // eleventyConfig.addCollection('collections', collection => {
   //   return collection.getFilteredByGlob('_collections/*.md')
   // })
@@ -74,6 +99,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: 'src'
     },
+    markdownTemplateEngine: 'njk',
     templateFormats: [
       'html',
       'md',

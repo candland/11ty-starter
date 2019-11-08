@@ -4,7 +4,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
   {%- set page_title = (title or site.title | escape) %}
-  {%- set page_desc =  ([description, content, site.description] | firstValue | striptags | truncate(160) | escape) %}
+  {%- set page_desc =  ([description, excerpt, content, site.description] | firstValue | striptags | truncate(160) | escape) %}
   {%- set page_image = ([((image or site.image) | prepend(site.url))] | firstValue) %}
   <title>
     {{ page_title }} | {{ site.title | escape }}

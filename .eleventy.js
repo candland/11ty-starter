@@ -84,6 +84,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss)
 
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
+  eleventyConfig.addPassthroughCopy({'src/_assets/images': 'assets/images'})
 
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,

@@ -28,5 +28,9 @@
     "postcss": "^7",
     "stimulus": "2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "dependencies": {
+    "highlight.js": "^10.4.1",
+    "lodash": ">=4.17.19"
   }
 }

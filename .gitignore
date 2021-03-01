@@ -6,3 +6,4 @@ src/assets/css/
 _site/
 .DS_Store
 build
+.parcel-cache

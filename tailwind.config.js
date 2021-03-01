@@ -1,5 +1,9 @@
 module.exports = {
   theme: {},
   variants: {},
-  plugins: []
+  plugins: [],
+  purge: [
+    './_site/**/*.html',
+    './build/**/*.html'
+  ]
 }

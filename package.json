@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "ELEVENTY_ENV=development eleventy --serve --quiet",
-    "dev:parcel": "parcel watch --public-url /assets src/_assets/css/main.css src/_assets/js/index.js --dist-dir _site/assets",
+    "dev:parcel": "parcel watch './src/**/*.css' './src/**/.js' --public-url /assets src/_assets/css/main.css src/_assets/js/index.js --dist-dir _site/assets",
     "build": "run-s prod:parcel prod:eleventy",
     "prod:eleventy": "ELEVENTY_ENV=production eleventy --output=./build",
     "prod:parcel": "NODE_ENV=production parcel build --public-url /assets src/_assets/css/main.css src/_assets/js/index.js --dist-dir build/assets"

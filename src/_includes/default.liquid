@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {% include "head.liquid" %}
+  <body>
+
+    {% include "header.liquid" %}
+
+    <div class="container mx-auto">
+      {{ content }}
+    </div>
+
+    {% include "footer.liquid" %}
+
+    <!-- JavaScript -->
+    <script src="/assets/js/index.js"></script>
+  </body>
+</html>

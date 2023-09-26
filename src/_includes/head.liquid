@@ -3,9 +3,14 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-  {%- set page_title = (title or site.title | escape) %}
-  {%- set page_desc =  ([description, excerpt, content, site.description] | firstValue | striptags | truncate(160) | escape) %}
-  {%- set page_image = ([((image or site.image) | prepend(site.url))] | firstValue) %}
+  {%- assign page_title = title | default: site.title | escape %}
+  {%- assign page_desc = description | default: excerpt | default: content | default: site.description | strip_html | truncate: 160 | escape %}
+  {%- if image %}
+    {%- assign page_image = image %}
+  {%- else %}
+    {%- assign page_image = site.image | fullUrl: site.url %}
+  {%- endif %}
+
   <title>
     {{ page_title }} | {{ site.title | escape }}
   </title>
@@ -15,7 +20,7 @@
   <meta property="og:title" content="{{ page_title }}" />
   <meta property="og:description" content="{{ page_desc }}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ page.url | prepend(site.url) }}" />
+  <meta property="og:url" content="{{ page.url | prepend: site.url }}" />
   <meta property="og:image" content="{{ page_image }}" />
   <meta property="fb:app_id" content="{{ site.social.fb_appid }}" />
 
@@ -38,8 +43,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
   <link href="/assets/css/main.css" rel="stylesheet"/>
   <link rel="me" href="https://twitter.com/{{ site.social.twitter }}"/>
-  <link href="{{ page.url | replace("index.html","") | prepend(site.url) }}" rel="canonical"/>
-  <link href="{{ "/feed.xml" | prepend(site.url) }}" rel="alternate" title="{{ site.title | escape }}" type="application/rss+xml"/>
+  <link href="{{ page.url | replace: "index.html", "" | prepend: site.url }}" rel="canonical"/>
+  <link href="{{ "/feed.xml" | prepend: site.url }}" rel="alternate" title="{{ site.title | escape }}" type="application/rss+xml"/>
   <!-- Favicons
   -->
   <link href="/favicon.ico" rel="icon" type="image/x-icon"/>

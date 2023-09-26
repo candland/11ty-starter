@@ -1,5 +1,5 @@
 <div class="container mx-auto">
-  <nav class="flex flex-wrap justify-between mb-4">
+  <div class="flex flex-wrap justify-between mb-4">
     <div class="flex-no-shrink">
       <a href="/">
         <img class="img-fluid" src="/assets/images/sg-logo.svg" alt="Stubborn Goods Logo" style="width: 100% \9;"/>
@@ -10,31 +10,38 @@
         <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
       </button>
     </div>
-    <div class="hidden w-full lg:w-auto block pt-5 lg:flex collapse navbar-collapse" id="navbarHeader">
-      <ul class="flex flex-col lg:flex-row justify-start lg:justify-end ml-auto border-t border-solid lg:border-none">
-        {%- for nav in collections.nav | ordered | reverse -%}
-        <li class="p-2 border-b border-solid lg:border-none {% if nav.url == page.url %} text-bold{% endif %}">
+    <div class="hidden w-full lg:w-auto lg:block pt-5 lg:flex" id="navbarHeader">
+      <nav class="flex flex-col lg:flex-row justify-start lg:justify-end ml-auto border-t border-solid lg:border-none">
+        {%- assign navs = collections.nav | ordered | reverse %}
+        {%- for nav in navs -%}
+        <div class="p-2 border-b border-solid lg:border-none {% if nav.url == page.url %} text-bold{% endif %}">
           <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
-        </li>
+        </div>
         {%- endfor -%}
-        <li class="p-2 border-b border-solid lg:border-none ">
+        {% if site.social.twitter %}
+        <div class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
             <i class="fa fa-twitter"></i>
           </a>
-        </li>
-        <li class="p-2 border-b border-solid lg:border-none ">
+        </div>
+        {% endif %}
+        {% if site.social.facebook %}
+        <div class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
             <i class="fa fa-facebook"></i>
           </a>
-        </li>
-        <li class="p-2 border-b border-solid lg:border-none pr-0">
+        </div>
+        {% endif %}
+        {% if site.social.instagram %}
+        <div class="p-2 border-b border-solid lg:border-none pr-0">
           <a class="" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
             <i class="fa fa-instagram"></i>
           </a>
-        </li>
-      </ul>
+        </div>
+        {% endif %}
+      </nav>
     </div>
-  </nav>
+  </div>
 </div>
 <script>
   'use strict';

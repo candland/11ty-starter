@@ -13,17 +13,18 @@ order: 0
   </p>
   <div>
     <ul>
-    {% for post in (collections.post | head(-3) ) %}
-      <li>
-        <a href="{{post.url}}">
-          {{ post.data.title }}
-        </a>
-        | {{ (post.data.tags or []) | join(', ') }}
-        | {{ post.date.toDateString() }}
-      </li>
-    {% endfor %}
+      {%- assign posts = collections.posts | head: 3 %}
+      {%- for post in posts %}
+        <li>
+          <a href="{{post.url}}">
+            {{ post.data.title }}
+          </a>
+          | {{ post.data.tags | default: [] | join: ', ' }}
+          | {{ post.date | displayDate }}
+        </li>
+      {%- endfor %}
     </ul>
-		<a href="{{ "/posts/" | url }}">All</a>
+    <a href="{{ "/posts/" | url }}">All</a>
   </div>
 
   <div>

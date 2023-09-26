@@ -1,0 +1,38 @@
+---
+layout: page
+pagination:
+  data: collections.posts
+  size: 3
+  alias: posts
+tags: nav
+navtitle: Posts
+order: 2
+---
+
+<article class="">
+  <h1 class="">Posts</h1>
+  <div>
+    <ul>
+    {% for post in posts %}
+      <li>
+        <a href="{{post.url | url}}">
+          {{ post.data.title }}
+        </a>
+        | {{ post.data.tags | default: [] | join: ', ' }}
+        | {{ post.date | displayDate }}
+
+        <p>{{ post.data.page.excerpt | default: post.templateContent | strip_html | truncate: 240 }}</p>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  <nav class="mx-auto py-3 flex flex-row gap-6">
+    {%- if pagination.previousPageHref -%}
+      <a href="{{ pagination.previousPageHref | url }}">Previous</a>
+    {%- endif -%}
+    {%- if pagination.nextPageHref -%}
+      <a href="{{ pagination.nextPageHref | url }}">Next</a>
+    {%- endif -%}
+  </nav>
+</article>

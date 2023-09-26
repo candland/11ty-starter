@@ -1,9 +1,8 @@
 module.exports = {
+  content: ["./src/**/*.{html,js,liquid}"],
   theme: {},
   variants: {},
-  plugins: [],
-  purge: [
-    './_site/**/*.html',
-    './build/**/*.html'
+  plugins: [
+    require('@tailwindcss/typography')
   ]
 }

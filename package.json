@@ -5,32 +5,29 @@
   "scripts": {
     "start": "npm-run-all --parallel dev:*",
     "dev:eleventy": "ELEVENTY_ENV=development eleventy --serve --quiet",
-    "dev:parcel": "parcel watch './src/**/*.css' './src/**/.js' --public-url /assets src/_assets/css/main.css src/_assets/js/index.js --dist-dir _site/assets",
-    "build": "run-s prod:parcel prod:eleventy",
+    "dev:esbuild": "esbuild ./src/_assets/js/index.js --bundle --outfile=./_site/assets/js/index.js --watch",
+    "dev:tailwind": "npx tailwindcss -i ./src/_assets/css/main.css -o ./_site/assets/css/main.css --watch --postcss",
+    "build": "run-s prod:eleventy prod:esbuild prod:tailwind",
     "prod:eleventy": "ELEVENTY_ENV=production eleventy --output=./build",
-    "prod:parcel": "NODE_ENV=production parcel build --public-url /assets src/_assets/css/main.css src/_assets/js/index.js --dist-dir build/assets"
+    "prod:esbuild": "NODE_ENV=production esbuild ./src/_assets/js/index.js --bundle --minify --sourcemap --target=es6 --outfile=./build/assets/js/index.js",
+    "prod:tailwind": "NODE_ENV=production npx tailwindcss -i ./src/_assets/css/main.css -o ./build/assets/css/main.css --minify --postcss"
   },
   "author": "Dusty Candland",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-plugin-rss": "^1.0.6",
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@fullhuman/postcss-purgecss": "^1.2.0",
-    "@parcel/transformer-css": "2.0.0-nightly.612",
-    "@parcel/transformer-postcss": "2.0.0-nightly.612",
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "autoprefixer": "^9",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "esbuild": "^0.19.3",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.0.0-beta.1",
-    "postcss": "^8",
-    "stimulus": "2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "stimulus": "^3.0.1",
+    "tailwindcss": "^3.1.4"
   },
   "dependencies": {
-    "highlight.js": "^10.4.1",
-    "lodash": ">=4.17.19"
+    "@11ty/eleventy-img": "^3.1.1",
+    "eleventy-xml-plugin": "^0.1.0"
   }
 }

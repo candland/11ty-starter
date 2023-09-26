@@ -1,8 +1,19 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
+const markdownIt = require('markdown-it')({
+  html: true,
+  linkify: true
+})
+const xmlFiltersPlugin = require('eleventy-xml-plugin')
 
 module.exports = function (eleventyConfig) {
-  // Add a filter using the Config API
-  /* eleventyConfig.addFilter( "myFilter", function() {}); */
+  function markdownit (content) {
+    if (content) {
+      const md = markdownIt.render(content)
+      return md
+    }
+    return null
+  }
+  eleventyConfig.addFilter('markdownit', markdownit)
 
   function isPresent (val) {
     return val !== null && val !== '' && val !== 'undefined' && val !== undefined
@@ -81,7 +92,25 @@ module.exports = function (eleventyConfig) {
     return items[index]
   })
 
+  function fullUrl (path, rootUrl) {
+    if (path.startsWith('http')) {
+      return path
+    }
+    return prepend(path, rootUrl)
+  }
+  eleventyConfig.addFilter('fullUrl', fullUrl)
+
+  function prepend (value, pre, div = '') {
+    return `${pre || ''}${div}${value}`
+  }
+  eleventyConfig.addFilter('prepend', prepend)
+
   eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(xmlFiltersPlugin)
+
+  eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339)
+  eleventyConfig.addLiquidFilter("absoluteUrl", pluginRss.absoluteUrl)
+  eleventyConfig.addLiquidFilter("convertHtmlToAbsoluteUrls", pluginRss.convertHtmlToAbsoluteUrls)
 
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
   eleventyConfig.addPassthroughCopy({'src/_assets/images': 'assets/images'})
@@ -92,19 +121,19 @@ module.exports = function (eleventyConfig) {
     excerpt_separator: '<!-- more -->'
   })
 
-  // eleventyConfig.addCollection('collections', collection => {
-  //   return collection.getFilteredByGlob('_collections/*.md')
-  // })
+  eleventyConfig.setLiquidOptions({
+    jsTruthy: true,
+  })
 
   return {
     dir: {
       input: 'src'
     },
-    markdownTemplateEngine: 'njk',
+    markdownTemplateEngine: 'liquid',
     templateFormats: [
       'html',
       'md',
-      'njk'
+      'liquid'
     ],
     passthroughFileCopy: true
   }

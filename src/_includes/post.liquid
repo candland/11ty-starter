@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article class="">
+  <h1 class="pb-0">{{ title }}</h1>
+  <div class="text-gray-700 pb-6">
+    {{ author }} | {{ page.date | displayDate }}
+  </div>
+  <div class="content">
+    {{ content }}
+  </div>
+</article>
+
+{% assign previousPost = collections.posts | getPreviousCollectionItem %}
+{% assign nextPost = collections.posts | getNextCollectionItem %}
+
+<nav class="flex flex-row gap-6">
+  {% if previousPost %}<div>Previous: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a></div>{% endif %}
+  {% if nextPost %}<div>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></div>{% endif %}
+</nav>

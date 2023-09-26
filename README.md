@@ -4,7 +4,7 @@ WIP: Suggestions, comments, pull requests all welcome!
 A basic starter site with 11ty, ParcelJS, StimulusJS, and TailwindCSS.
 
 * [11ty](https://111ty.io)
-* [ParcelJS](https://parceljs.org)
+* [Esbuild](https://esbuild.github.io/)
 * [StimulusJS](https://stimulusjs.org)
 * [TailwindCSS](https://tailwindcss.com)
 * [Fontawesome](https://fontawesome.com)

@@ -1,13 +1,16 @@
-const pluginRss = require('@11ty/eleventy-plugin-rss')
-const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
-const markdownIt = require('markdown-it')({
+import pluginRss from '@11ty/eleventy-plugin-rss'
+import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
+import markdownItLib from 'markdown-it'
+import xmlFiltersPlugin from 'eleventy-xml-plugin'
+import fontAwesomePlugin from '@11ty/font-awesome'
+
+const markdownIt = markdownItLib({
   html: true,
   linkify: true
 })
-const xmlFiltersPlugin = require('eleventy-xml-plugin')
 
-module.exports = function (eleventyConfig) {
-  function markdownit (content) {
+export default function (eleventyConfig) {
+  function markdownit(content) {
     if (content) {
       const md = markdownIt.render(content)
       return md
@@ -16,7 +19,7 @@ module.exports = function (eleventyConfig) {
   }
   eleventyConfig.addFilter('markdownit', markdownit)
 
-  function isPresent (val) {
+  function isPresent(val) {
     return val !== null && val !== '' && val !== 'undefined' && val !== undefined
   }
 
@@ -87,7 +90,7 @@ module.exports = function (eleventyConfig) {
     return items[index]
   })
 
-  function fullUrl (path, rootUrl) {
+  function fullUrl(path, rootUrl) {
     if (path.startsWith('http')) {
       return path
     }
@@ -95,13 +98,14 @@ module.exports = function (eleventyConfig) {
   }
   eleventyConfig.addFilter('fullUrl', fullUrl)
 
-  function prepend (value, pre, div = '') {
+  function prepend(value, pre, div = '') {
     return `${pre || ''}${div}${value}`
   }
   eleventyConfig.addFilter('prepend', prepend)
 
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(eleventyNavigationPlugin)
+  eleventyConfig.addPlugin(fontAwesomePlugin)
   eleventyConfig.addPlugin(xmlFiltersPlugin)
 
   eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339)
@@ -109,7 +113,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("convertHtmlToAbsoluteUrls", pluginRss.convertHtmlToAbsoluteUrls)
 
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
-  eleventyConfig.addPassthroughCopy({'src/_assets/images': 'assets/images'})
+  eleventyConfig.addPassthroughCopy({ 'src/_assets/images': 'assets/images' })
 
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,

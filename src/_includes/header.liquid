@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="hidden w-full lg:w-auto lg:block pt-5 lg:flex" id="navbarHeader">
-      <nav class="flex flex-col lg:flex-row justify-start lg:justify-end ml-auto border-t border-solid lg:border-none">
+      <nav class="flex flex-col lg:flex-row justify-start lg:justify-end lg:items-center ml-auto border-t border-solid lg:border-none">
         {%- assign navPages = collections.all | eleventyNavigation %}
         {%- for entry in navPages -%}
         <div class="p-2 border-b border-solid lg:border-none {% if entry.url == page.url %} text-bold{% endif %}">
@@ -21,21 +21,21 @@
         {% if site.social.twitter %}
         <div class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
-            <i class="fa fa-twitter"></i>
+            <i class="fa-brands fa-twitter w-4 h-4"></i>
           </a>
         </div>
         {% endif %}
         {% if site.social.facebook %}
         <div class="p-2 border-b border-solid lg:border-none ">
           <a class="" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
-            <i class="fa fa-facebook"></i>
+            <i class="fa-brands fa-facebook w-4 h-4"></i>
           </a>
         </div>
         {% endif %}
         {% if site.social.instagram %}
         <div class="p-2 border-b border-solid lg:border-none pr-0">
           <a class="" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
-            <i class="fa fa-instagram"></i>
+            <i class="fa-brands fa-instagram w-4 h-4"></i>
           </a>
         </div>
         {% endif %}

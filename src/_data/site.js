@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   title: '11ty Starter',
   description: 'Quickly get started w/ 11ty.',
   url: 'https://github.com/candland/11ty-starter',

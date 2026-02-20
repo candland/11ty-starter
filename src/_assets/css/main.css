@@ -1,6 +1,86 @@
 @charset 'utf-8';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
+@plugin '@tailwindcss/typography';
+
+h1 {
+  @apply text-3xl pb-5;
+}
+h2 {
+  @apply text-2xl pb-5;
+}
+h3 {
+  @apply text-xl tracking-wide pb-4;
+}
+h4 {
+  @apply text-xl text-gray-700 pb-4;
+
+}
+h5 {
+  @apply text-lg font-bold pb-3;
+}
+h6 {
+  @apply text-lg pb-3;
+}
+
+p {
+  @apply pb-5
+}
+
+a {
+  @apply text-blue-700;
+  &:hover {
+    @apply text-blue-400 underline;
+  }
+}
+
+label {
+  @apply block text-sm font-bold mb-2
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel],
+input[type=file],
+textarea {
+  @apply bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight;
+  &:focus {
+    @apply outline-none bg-white border-blue-500;
+  }
+}
+
+input[type=radio],
+input[type=checkbox] {
+  @apply mr-2 leading-tight;
+}
+
+input[type=submit],
+input[type=reset],
+button,
+a.button {
+  @apply shadow bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  &:hover {
+    @apply bg-blue-400;
+  }
+  &:focus {
+    @apply ring outline-none;
+  }
+}
+
+blockquote {
+  @apply px-5 text-gray-700 tracking-wider;
+}
+
+dl,
+ul,
+ol {
+  @apply pb-3;
+}
+
+.content {
+  ul {
+    @apply list-disc list-inside;
+  }
+}

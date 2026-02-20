@@ -1,4 +1,5 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
 const markdownIt = require('markdown-it')({
   html: true,
   linkify: true
@@ -56,12 +57,6 @@ module.exports = function (eleventyConfig) {
     return arr.filter((v) => !args.includes(v))
   })
 
-  eleventyConfig.addFilter('ordered', function (coll) {
-    return coll.sort((a, b) => {
-      return b.data.order - a.data.order
-    })
-  })
-
   eleventyConfig.addFilter('head', (array, n) => {
     if (n < 0) {
       return array.slice(n)
@@ -106,6 +101,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('prepend', prepend)
 
   eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(eleventyNavigationPlugin)
   eleventyConfig.addPlugin(xmlFiltersPlugin)
 
   eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339)

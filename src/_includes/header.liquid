@@ -12,10 +12,10 @@
     </div>
     <div class="hidden w-full lg:w-auto lg:block pt-5 lg:flex" id="navbarHeader">
       <nav class="flex flex-col lg:flex-row justify-start lg:justify-end ml-auto border-t border-solid lg:border-none">
-        {%- assign navs = collections.nav | ordered | reverse %}
-        {%- for nav in navs -%}
-        <div class="p-2 border-b border-solid lg:border-none {% if nav.url == page.url %} text-bold{% endif %}">
-          <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
+        {%- assign navPages = collections.all | eleventyNavigation %}
+        {%- for entry in navPages -%}
+        <div class="p-2 border-b border-solid lg:border-none {% if entry.url == page.url %} text-bold{% endif %}">
+          <a href="{{ entry.url }}">{{ entry.key }}</a>
         </div>
         {%- endfor -%}
         {% if site.social.twitter %}

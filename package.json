@@ -27,6 +27,7 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-navigation": "^1.0.5",
     "@hotwired/stimulus": "^3.2.2",
+    "@tailwindcss/cli": "^4.2.0",
     "eleventy-xml-plugin": "^0.1.0"
   }
 }

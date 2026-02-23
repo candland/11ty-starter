@@ -1,16 +1,21 @@
-<div class="container mx-auto">
-  <div class="flex flex-wrap justify-between mb-4">
+<div class="container mx-auto" data-controller="mobile-nav">
+  <div class="flex flex-wrap justify-between mb-4 relative">
     <div class="flex-no-shrink">
       <a href="/">
         <img class="img-fluid" src="/assets/images/sg-logo.svg" alt="Stubborn Goods Logo" style="width: 100% \9;"/>
       </a>
     </div>
-    <div class="p-4 block lg:hidden" data-menu="navbarHeader">
-      <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-        <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    <div class="p-4 block lg:hidden">
+      <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" data-action="mobile-nav#toggle" aria-label="Toggle navigation menu">
+        <svg data-mobile-nav-target="openIcon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg data-mobile-nav-target="closeIcon" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
       </button>
     </div>
-    <div class="hidden w-full lg:w-auto lg:block pt-5 lg:flex" id="navbarHeader">
+    <div class="hidden w-full absolute top-16 lg:top-0 bg-white z-50 lg:relative lg:w-auto lg:block pt-5 lg:flex" data-mobile-nav-target="menu">
       <nav class="flex flex-col lg:flex-row justify-start lg:justify-end lg:items-center ml-auto border-t border-solid lg:border-none">
         {%- assign navPages = collections.all | eleventyNavigation %}
         {%- for entry in navPages -%}
@@ -43,26 +48,3 @@
     </div>
   </div>
 </div>
-<script>
-  'use strict';
-
-  (function() {
-    function setup_menu(script) {
-      var els = document.querySelectorAll("div[data-menu]");
-      if (els.length > 0) {
-        var el = els[0];
-        el.addEventListener('click', function(e) {
-          var id = e.currentTarget.getAttribute('data-menu');
-          var el = document.querySelectorAll("#" + id)[0];
-          el.classList.toggle("hidden");
-        });
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", function() { setup_menu() });
-    } else {
-      setup_menu();
-    }
-  })()
-</script>

@@ -10,18 +10,18 @@ eleventyNavigation:
 ---
 
 <article class="">
-  <h1 class="">Posts</h1>
+  <h1 class="text-3xl pb-5">Posts</h1>
   <div>
-    <ul>
+    <ul class="pb-3">
     {% for post in posts %}
       <li>
-        <a href="{{post.url | url}}">
+        <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{post.url | url}}">
           {{ post.data.title }}
         </a>
         | {{ post.data.tags | default: [] | join: ', ' }}
         | {{ post.date | displayDate }}
 
-        <p>{{ post.data.page.excerpt | default: post.templateContent | strip_html | truncate: 240 }}</p>
+        <p class="pb-5">{{ post.data.page.excerpt | default: post.templateContent | strip_html | truncate: 240 }}</p>
       </li>
     {% endfor %}
     </ul>
@@ -29,10 +29,10 @@ eleventyNavigation:
 
   <nav class="mx-auto py-3 flex flex-row gap-6">
     {%- if pagination.previousPageHref -%}
-      <a href="{{ pagination.previousPageHref | url }}">Previous</a>
+      <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ pagination.previousPageHref | url }}">Previous</a>
     {%- endif -%}
     {%- if pagination.nextPageHref -%}
-      <a href="{{ pagination.nextPageHref | url }}">Next</a>
+      <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ pagination.nextPageHref | url }}">Next</a>
     {%- endif -%}
   </nav>
 </article>

@@ -7,16 +7,16 @@ eleventyNavigation:
 ---
 
 <article class="">
-  <h1 class="text-center">{{ site.description }}</h1>
-  <p class="text-lg text-center">
+  <h1 class="text-3xl pb-5 text-center">{{ site.description }}</h1>
+  <p class="text-lg text-center pb-5">
 		A basic starter site with 11ty, ParcelJS, StimulusJS, and TailwindCSS.
   </p>
   <div>
-    <ul>
+    <ul class="pb-3">
       {%- assign posts = collections.posts | head: 3 %}
       {%- for post in posts %}
         <li>
-          <a href="{{post.url}}">
+          <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{post.url}}">
             {{ post.data.title }}
           </a>
           | {{ post.data.tags | default: [] | join: ', ' }}
@@ -24,14 +24,14 @@ eleventyNavigation:
         </li>
       {%- endfor %}
     </ul>
-    <a href="{{ "/posts/" | url }}">All</a>
+    <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ "/posts/" | url }}">All</a>
   </div>
 
   <div>
-    <ul>
-      <li><a href="{{ "/style/" | url }}">Style</a></li>
-      <li><a href="{{ "/feed.xml" | url }}">Feed XML</a></li>
-      <li><a href="{{ "/sitemap.xml" | url }}">Sitemap XML</a></li>
+    <ul class="pb-3">
+      <li><a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ "/style/" | url }}">Style</a></li>
+      <li><a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ "/feed.xml" | url }}">Feed XML</a></li>
+      <li><a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ "/sitemap.xml" | url }}">Sitemap XML</a></li>
     </ul>
   </div>
 </article>

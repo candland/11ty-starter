@@ -1,8 +1,8 @@
 <div class="container mx-auto" data-controller="mobile-nav">
   <div class="flex flex-wrap justify-between mb-4 relative">
-    <div class="flex-no-shrink">
-      <a href="/">
-        <img class="img-fluid" src="/assets/images/sg-logo.svg" alt="Stubborn Goods Logo" style="width: 100% \9;"/>
+    <div class="shrink-0">
+      <a class="text-blue-700 hover:text-blue-400 hover:underline" href="/">
+        <img class="max-w-full h-auto" src="/assets/images/sg-logo.svg" alt="Stubborn Goods Logo"/>
       </a>
     </div>
     <div class="p-4 block lg:hidden">
@@ -20,26 +20,26 @@
         {%- assign navPages = collections.all | eleventyNavigation %}
         {%- for entry in navPages -%}
         <div class="p-2 border-b border-solid lg:border-none {% if entry.url == page.url %} text-bold{% endif %}">
-          <a href="{{ entry.url }}">{{ entry.key }}</a>
+          <a class="text-blue-700 hover:text-blue-400 hover:underline" href="{{ entry.url }}">{{ entry.key }}</a>
         </div>
         {%- endfor -%}
         {% if site.social.twitter %}
         <div class="p-2 border-b border-solid lg:border-none ">
-          <a class="" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
+          <a class="text-blue-700 hover:text-blue-400 hover:underline" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
             <i class="fa-brands fa-twitter w-4 h-4"></i>
           </a>
         </div>
         {% endif %}
         {% if site.social.facebook %}
         <div class="p-2 border-b border-solid lg:border-none ">
-          <a class="" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
+          <a class="text-blue-700 hover:text-blue-400 hover:underline" href="https://facebook.com/{{ site.social.facebook }}" target="_blank">
             <i class="fa-brands fa-facebook w-4 h-4"></i>
           </a>
         </div>
         {% endif %}
         {% if site.social.instagram %}
         <div class="p-2 border-b border-solid lg:border-none pr-0">
-          <a class="" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
+          <a class="text-blue-700 hover:text-blue-400 hover:underline" href="https://instagram.com/{{ site.social.instagram }}" target="_blank">
             <i class="fa-brands fa-instagram w-4 h-4"></i>
           </a>
         </div>
